@@ -9,7 +9,7 @@ printed in the next sequence.
 
 For example, 1 -> "one 1" -> 11 -> "two ones" -> 21 -> one two and one one -> 1211
 
-Help: Help from Chat GPT debugging conditions for while loop and location of yield statement
+Help: Help from Chat GPT debugging conditions for while loop and location of yield statement in look_say()
 """
 from typing import Generator
 
@@ -34,7 +34,7 @@ def fibonacci(n: int = None) -> Generator[int, None, None]:
 
 
 
-def look_say(n: int = None) -> Generator[str, None, None]:
+def look_say(n: int = None) -> Generator[int, None, None]:
     """
     Generates infitine look-say sequence.
 
@@ -50,10 +50,9 @@ def look_say(n: int = None) -> Generator[str, None, None]:
     loop_counter = 0 # counter for how many terms need to be generated
     num = "1" # current value in sequence
 
-
     while n is None or loop_counter < n:
 
-        yield num
+        yield int(num)
         num_counter = 1 # counter for current letter
         last_char = num[0] # stores previous value of num string
         ans = "" # working value to concatenate values as num is iterated over
@@ -77,3 +76,8 @@ assert list(fibonacci(0)) == []
 assert list(fibonacci(1)) == [0]
 assert list(fibonacci(2)) == [0, 1]
 
+assert list(look_say(10)) == [1, 11, 21, 1211, 111221, 312211, 13112221, 1113213211, 31131211131221, 13211311123113112211]
+assert list(look_say(-1)) == []
+assert list(look_say(0)) == []
+assert list(look_say(1)) == [1]
+assert list(look_say(2)) == [1, 11]
